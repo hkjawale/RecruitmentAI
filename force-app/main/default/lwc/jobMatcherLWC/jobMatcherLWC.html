@@ -1,0 +1,55 @@
+<!-- jobMatcherLWC.html -->
+<template>
+    <lightning-card title="AI Job Matcher" icon-name="custom:custom14">
+        <div class="slds-var-m-around_medium">
+            <!-- Button to start the process -->
+            <lightning-button 
+                label="Analyze & Rank Top Jobs" 
+                variant="brand" 
+                onclick={handleAnalyzeClick}
+                disabled={isLoading}>
+            </lightning-button>
+
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-var-m-top_medium">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    <p class="slds-text-align_center slds-var-m-top_small">Analyzing resume and matching jobs...</p>
+                </div>
+            </template>
+
+            <!-- Results List -->
+            <template if:true={jobResults}>
+                <div class="slds-var-m-top_large">
+                    <h2 class="slds-text-heading_medium slds-var-m-bottom_medium">Top Recommended Positions</h2>
+                    <!--  Responsive custom list for mobile-friendliness -->
+                    <template for:each={jobResults} for:item="job">
+                        <div key={job.jobId} class="slds-box slds-box_x-small slds-var-m-bottom_small slds-theme_shade">
+                            <lightning-layout vertical-align="center" horizontal-align="space-between">
+                                <lightning-layout-item flexibility="grow" padding="around-small">
+                                    <!-- Use a standard anchor tag for the clickable link -->
+                                    <a href={job.jobUrl} target="_blank" class="slds-text-heading_small">{job.jobTitle}</a>
+                                    <p class="slds-text-body_small slds-var-m-top_x-small"><em>{job.justification}</em></p>
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="around-small">
+                                    <div class="slds-text-align_right">
+                                        <p class="slds-text-body_small">Match Score</p>
+                                        <p class="slds-text-heading_large slds-text-color_success">{job.score}</p>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Error Panel -->
+            <template if:true={error}>
+                <div class="slds-var-m-top_medium slds-text-color_error">
+                    <p><strong>An error occurred:</strong></p>
+                    <p>{error}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

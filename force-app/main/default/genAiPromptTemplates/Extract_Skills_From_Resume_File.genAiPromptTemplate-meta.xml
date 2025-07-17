@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_2</activeVersionIdentifier>
+    <description>This prompt template extracts the skills of a candidate given an attached resume file on the candidate record</description>
+    <developerName>Extract_Skills_From_Resume_File</developerName>
+    <masterLabel>Extract Skills From Resume File</masterLabel>
+    <templateVersions>
+        <content>You are an expert AI recruiting assistant. Analyze the content of the attached resume file of the candidate. Your task is to intelligently identify all relevant professional skills, including technical skills, software proficiency, and key soft skills.
+
+Return the skills as a single, clean, comma-separated string.
+Do not add any introduction, explanation, or any text other than the comma-separated list of skills.
+Ignore any formatting noise from the document.
+Resume File: {!$RelatedList:CandidateProfile.CombinedAttachments.Records}
+</content>
+        <inputs>
+            <apiName>CandidateProfile</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <masterLabel>CandidateProfile</masterLabel>
+            <referenceName>Input:CandidateProfile</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultVertexAIGemini20Flash001</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:CandidateProfile.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:CandidateProfile.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are an expert AI recruiting assistant. Analyze the content of the attached resume file of the candidate. Your task is to intelligently identify all relevant professional skills, including technical skills, software proficiency, and key soft skills, and years of experience as &apos;X years of experience&apos;. 
+
+Return the skills and the years of exprience as a single, clean, comma-separated string.
+Do not add any introduction, explanation, or any text other than the comma-separated list of skills.
+Ignore any formatting noise from the document.
+Resume File: {!$RelatedList:CandidateProfile.CombinedAttachments.Records}
+</content>
+        <inputs>
+            <apiName>CandidateProfile</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <masterLabel>CandidateProfile</masterLabel>
+            <referenceName>Input:CandidateProfile</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultVertexAIGemini20Flash001</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:CandidateProfile.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:CandidateProfile.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>/* Define the role and purpose */
+You are an expert AI recruiting assistant. Analyze the content of the attached resume file of the candidate. Your task is to intelligently identify all relevant professional skills, including technical skills, software proficiency, and key soft skills, and years of experience as &apos;X years of experience&apos;. 
+
+/* Define how to structure the response */
+Return the skills and the years of exprience as a single, clean, comma-separated string.
+Do not add any introduction, explanation, or any text other than the comma-separated list of skills.
+Ignore any formatting noise from the document.
+
+/* Ground the prompt with the candidate attached resume file */
+Resume File: {!$RelatedList:CandidateProfile.CombinedAttachments.Records}
+If there are multiple files, only select the file that has the word &apos;resume&apos; in it&apos;s title and ignore the other files. 
+</content>
+        <inputs>
+            <apiName>CandidateProfile</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <masterLabel>CandidateProfile</masterLabel>
+            <referenceName>Input:CandidateProfile</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:CandidateProfile.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:CandidateProfile.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="https://soap.sforce.com/2006/04/metadata">
+    <fullName>Salary_Range__c</fullName>
+    <label>Salary Range</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>50K-75K</fullName>
+                <default>false</default>
+                <label>50K-75K</label>
+            </value>
+            <value>
+                <fullName>75K-90K</fullName>
+                <default>false</default>
+                <label>75K-90K</label>
+            </value>
+            <value>
+                <fullName>90K-120K</fullName>
+                <default>false</default>
+                <label>90K-120K</label>
+            </value>
+            <value>
+                <fullName>120K+</fullName>
+                <default>false</default>
+                <label>120K+</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

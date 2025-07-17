@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_4</activeVersionIdentifier>
+    <description>Generate an AI summary of a candidate based on their information and resume</description>
+    <developerName>Candidate_AI_Summary</developerName>
+    <masterLabel>Candidate AI Summary</masterLabel>
+    <relatedEntity>Candidate__c</relatedEntity>
+    <relatedField>Candidate__c.Candidate_AI_Summary__c</relatedField>
+    <templateVersions>
+        <content>Your job is to extract and summarize a candidate’s profile that gets stored on a summary field. 
+
+Use the details below to summarize the candidate&apos;s professional background in this format:
+
+Candidate Name 
+
+Candidate Overview (Also include information like location, linkedin link if provided)
+
+Key Skills Highlights 
+
+Total Years of Experience in [field of expertise e.g engineering]
+
+Most recent job title with the years or experience in that role
+
+Key accomplishments 
+
+Relevant certifications
+
+Also include their intersted domain preferences. 
+
+Candidate: {!$RecordSnapshot:Candidate__c.Snapshot}
+Resume: {!$RelatedList:Candidate__c.CombinedAttachments.Records}
+Name: {!$Input:Candidate__c.First_Name__c} {!$Input:Candidate__c.Last_Name__c}
+Education: {!$Input:Candidate__c.Education__c}
+Location: {!$Input:Candidate__c.City__c}, {!$Input:Candidate__c.State_Province__c}, {!$Input:Candidate__c.Country__c}
+Interested Domains: {!$Input:Candidate__c.Interested_Domains__c}
+
+Format the output as a rich text structured candidate profile summary in clear and easy-to-read bullet points. Include deep links to their linkedin profile and other sources like Github or portfolios ONLY if they are in the resume. 
+
+Don&apos;t add any pleasantries at the end of the summary.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <referenceName>Input:Candidate__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Candidate__c.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Candidate__c</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Your job is to extract and summarize a candidate’s profile that gets stored on a summary field. 
+
+Use the details below to summarize the candidate&apos;s professional background in this format:
+
+Candidate Name: 
+
+Candidate Overview: (Also include information like location, linkedin link if provided)
+
+Key Skills Highlights: 
+
+Total Years of Experience in [field of expertise. e.g engineering]:
+
+Most recent job title with the years or experience in that role:
+
+Key accomplishments: (less than 4 bullet points) 
+
+Relevant certifications: (only show if there are certifications)
+
+Candidate: {!$RecordSnapshot:Candidate__c.Snapshot}
+Resume: {!$RelatedList:Candidate__c.CombinedAttachments.Records}
+Name: {!$Input:Candidate__c.First_Name__c} {!$Input:Candidate__c.Last_Name__c}
+Education: {!$Input:Candidate__c.Education__c}
+Location: {!$Input:Candidate__c.City__c}, {!$Input:Candidate__c.State_Province__c}, {!$Input:Candidate__c.Country__c}
+Interested Domains: {!$Input:Candidate__c.Interested_Domains__c}
+
+Format the output as a rich text structured candidate profile summary in clear and easy-to-read points. Include deep links to their linkedin profile and other sources like Github or portfolios ONLY if they are in the resume. Do not add any extra formatting characters like * or ** 
+
+Don&apos;t add any pleasantries at the end of the summary.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <referenceName>Input:Candidate__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultVertexAIGeminiPro25</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Candidate__c.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Candidate__c</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Your job is to extract and summarize a candidate’s profile that gets stored on a summary field. 
+
+Use the details below to summarize the candidate&apos;s professional background in this format:
+
+Candidate Name: 
+
+Candidate Overview: (Also include information like location, linkedin link if provided)
+
+Key Skills Highlights: 
+
+Total Years of Experience in [field of expertise. e.g engineering]:
+
+Most recent job title with the years or experience in that role:
+
+Key accomplishments: (less than 4 bullet points) 
+
+Relevant certifications: (only show if there are certifications)
+
+Candidate: {!$RecordSnapshot:Candidate__c.Snapshot}
+Resume: {!$RelatedList:Candidate__c.CombinedAttachments.Records}
+Name: {!$Input:Candidate__c.First_Name__c} {!$Input:Candidate__c.Last_Name__c}
+Education: {!$Input:Candidate__c.Education__c}
+Location: {!$Input:Candidate__c.City__c}, {!$Input:Candidate__c.State_Province__c}, {!$Input:Candidate__c.Country__c}
+Interested Domains: {!$Input:Candidate__c.Interested_Domains__c}
+
+Format the output as a rich text structured candidate profile summary in clear and easy-to-read points and bullet points when needed. Include deep links to their linkedin profile and other sources like Github or portfolios ONLY if they are in the resume. Do not add any extra formatting characters like * or ** 
+
+Don&apos;t add any pleasantries at the end of the summary.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <referenceName>Input:Candidate__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultVertexAIGeminiPro25</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Candidate__c.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Candidate__c</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>/* Define the role and purpose */
+Your job as a reruiter assistant is to extract and summarize a candidate’s profile that gets stored on a summary field. 
+
+/* Define how to structure the summary */
+Use the details below to summarize the candidate&apos;s professional background in this format:
+
+Candidate Name: 
+
+Candidate Overview: (Also include information like location, linkedin link if provided)
+
+Key Skills Highlights: 
+
+Total Years of Experience in [field of expertise. e.g engineering]:
+
+Most recent job title with the years or experience in that role:
+
+Key accomplishments: (less than 4 bullet points) 
+
+Relevant certifications: (only show if there are certifications)
+
+/* Ground the data with the candidate details in Salesforce */
+Candidate: {!$RecordSnapshot:Candidate__c.Snapshot}
+Resume: {!$RelatedList:Candidate__c.CombinedAttachments.Records}
+Name: {!$Input:Candidate__c.First_Name__c} {!$Input:Candidate__c.Last_Name__c}
+Education: {!$Input:Candidate__c.Education__c}
+Location: {!$Input:Candidate__c.City__c}, {!$Input:Candidate__c.State_Province__c}, {!$Input:Candidate__c.Country__c}
+Interested Domains: {!$Input:Candidate__c.Interested_Domains__c}
+
+/* Add instructions on how you prefer to handle the output response and format and style */
+Format the output as a rich text structured candidate profile summary in clear and easy-to-read points and bullet points when needed. Include deep links to their linkedin profile and other sources like Github or portfolios ONLY if they are in the resume. Do not add any extra formatting characters like * or ** 
+
+Don&apos;t add any pleasantries at the end of the summary.
+</content>
+        <inputs>
+            <apiName>RelatedEntity</apiName>
+            <definition>SOBJECT://Candidate__c</definition>
+            <referenceName>Input:Candidate__c</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultVertexAIGeminiPro25</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>CombinedAttachments</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Candidate__c.CombinedAttachments.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Candidate__c.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Candidate__c</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>y3v6M0II3evRQDIb41B5bxcfdZctNFqh1ur3HjX5z4g=_4</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__fieldCompletion</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
