@@ -1,6 +1,7 @@
 # Agentforce Automation: Supercharge your Recruiters 
 
 Looking for more details on how this solutions works? Checkout the Dev blog: https://dev.to/hemantj/supercharge-your-recruiters-building-ai-powered-automation-in-salesforce-with-agentforce-3can
+Checkout the YouTube walkthough explainer: https://www.youtube.com/watch?v=1n-_5GgQ31Y&ab_channel=HemantJawale
 
 ## How Do You Plan to Deploy Your Changes?
 
