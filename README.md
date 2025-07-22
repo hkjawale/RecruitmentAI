@@ -1,6 +1,6 @@
-# Salesforce DX Project: Next Steps
+# Agentforce Automation: Supercharge your Recruiters 
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Looking for more details on how this solutions works? Checkout the Dev blog: https://dev.to/hemantj/supercharge-your-recruiters-building-ai-powered-automation-in-salesforce-with-agentforce-3can
 
 ## How Do You Plan to Deploy Your Changes?
 
